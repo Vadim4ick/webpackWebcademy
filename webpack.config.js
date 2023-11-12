@@ -28,7 +28,7 @@ module.exports = (env) => {
       // name - имя файла.
       // contenthash - это хэш, который основан на содержимом файла.
       // Когда файлы изменяются, contenthash также изменяется.
-      filename: "js/[name][contenthash].js",
+      filename: "js/[name][contenthash:8].bundle.js",
 
       // Абсолютный путь к каталогу, в который будут сохранены выходные файлы.
       path: path.resolve(__dirname, "dist"),
@@ -59,7 +59,6 @@ module.exports = (env) => {
       // Извлекает CSS из бандлов в отдельные файлы.
       new MiniCssExtractPlugin({
         filename: "css/[name].[contenthash:8].css",
-        chunkFilename: "css/[name].[contenthash:8].css",
       }),
     ],
 
@@ -131,9 +130,6 @@ module.exports = (env) => {
         {
           test: /\.svg$/,
           loader: "svg-inline-loader",
-          generator: {
-            filename: path.join("icons", "[name].[contenthash][ext]"),
-          },
           options: {
             removeSVGTagAttrs: true,
           },
